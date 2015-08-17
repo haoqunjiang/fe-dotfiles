@@ -25,8 +25,24 @@ env:
     es6: true
     jquery: true
 
+# 这里是参考了 Airbnb 的规范
 ecmaFeatures:
+    arrowFunctions: true
+    blockBindings: true
+    classes: true
+    defaultParams: true
+    destructuring: true
+    forOf: true
+    generators: false
     modules: true
+    objectLiteralComputedProperties: true
+    objectLiteralDuplicateProperties: false
+    objectLiteralShorthandMethods: true
+    objectLiteralShorthandProperties: true
+    spread: true
+    superInFunctions: true
+    templateStrings: true
+    jsx: tru
 
 plugins:
     - smells
