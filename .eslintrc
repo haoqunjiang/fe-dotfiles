@@ -5,20 +5,29 @@
 # http://eslint.org/docs/rules/
 # https://github.com/elijahmanor/eslint-plugin-smells
 # https://github.com/yannickcr/eslint-plugin-react
-
+#
 # 命令行用户安装 Node.js + eslint + babel-eslint + eslint-plugin-smells + eslint-plugin-react 即可
 # Sublime 用户还需安装 SublimeLinter + SublimeLinter-contrib-eslint 插件
 # Atom 用户安装 linter + linter-eslint 插件，并且需要在每个项目的根目录下安装前述各个 npm package，并复制本文件
-
+#
 # 根据 ESLint 规则的格式，以下每一条规则的值均为数字或数组（数组的第一个元素为数字）
 # 该数字表示警告等级，取值为 0、1 或 2，分别表示忽略、警告和禁止
+#
+# 目前这个文件是放在 ~/ 目录下的，供所有未配置 .eslintrc 的项目使用
+# 因此为了保证最大的兼容性，此处设置了多个 env，开启了大量 ES6 特性，并关闭了和 ES5 不兼容的一些规则
+#
+# 如果需要将这个配置用到自己的项目中，请进行如下修改：
+# 1. 根据自己的需要设置 env 和 ecmaFeatures 部分；
+# 2. ES6 项目请开启本文件末尾的几条规则；
+# 3. 非 React 项目请删掉 eslint-plugin-react，去除 jsx、react 相关规则，并在 globals 中去掉 React。
+
+
 
 parser:
     babel-eslint    # 为了使用更多的新特性
 
 # 环境设置
-# 更建议在每个文件中自行设置
-# 目前这个文件是放在 ~/ 目录下的，供所有未配置 .eslintrc 的项目使用，所以加了很多 env，保证最大的兼容性
+# 建议在每个文件中自行设置
 env:
     browser: true
     node: true
@@ -642,25 +651,6 @@ rules:
 
 
 
-    # ES6 项目请开启以下几个规则（将 0 改为 1）
-
-    # 仅使用 let 和 const，不使用 var
-    no-var: 0
-
-    # 对于不会被修改的变量，优先考虑使用 const 而非 let
-    prefer-const: 0
-
-    # 如果仅仅是为了使用数组作为函数参数，那么应该优先考虑使用 spread operator 而不是 .apply()
-    prefer-spread: 0
-
-    # 不要写 var self = this; 尽量使用 bind 和 箭头函数
-    smells/no-this-assign: 0
-
-    # 禁止复杂的字符串拼接，用模板引擎或 ES6 template string 替代
-    smells/no-complex-string-concat: 0
-
-
-
     # 更严格的控制代码复杂度的规则 http://elijahmanor.github.io/talks/js-smells/
 
     # 允许使用 switch 语句
@@ -731,3 +721,22 @@ rules:
 
     # Prevent missing parentheses around multilines JSX
     react/wrap-multilines: 1
+
+
+
+    # ES6 项目请开启以下几个规则（将 0 改为 1）
+
+    # 仅使用 let 和 const，不使用 var
+    no-var: 0
+
+    # 对于不会被修改的变量，优先考虑使用 const 而非 let
+    prefer-const: 0
+
+    # 如果仅仅是为了使用数组作为函数参数，那么应该优先考虑使用 spread operator 而不是 .apply()
+    prefer-spread: 0
+
+    # 不要写 var self = this; 尽量使用 bind 和 箭头函数
+    smells/no-this-assign: 0
+
+    # 禁止复杂的字符串拼接，用模板引擎或 ES6 template string 替代
+    smells/no-complex-string-concat: 0
