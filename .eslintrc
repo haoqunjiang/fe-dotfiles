@@ -25,24 +25,33 @@ env:
     es6: true
     jquery: true
 
-# 这里是参考了 Airbnb 的规范
+# 非 ES6 项目请全部关闭（直接删除即可，以下所有特性默认都是为 false）
 ecmaFeatures:
     arrowFunctions: true
+    binaryLiterals: true
+    octalLiterals: true
     blockBindings: true
     classes: true
     defaultParams: true
     destructuring: true
     forOf: true
-    generators: false
     modules: true
     objectLiteralComputedProperties: true
-    objectLiteralDuplicateProperties: false
     objectLiteralShorthandMethods: true
     objectLiteralShorthandProperties: true
+    restParams: true
     spread: true
     superInFunctions: true
     templateStrings: true
-    jsx: tru
+
+    generators: true    # 前端项目即使是 ES6 也不建议开启
+    jsx: true   # 非 React 项目请关闭
+
+    # 以下几个即使是 ES6 项目也请关闭
+    objectLiteralDuplicateProperties: false
+    regexUFlag: false
+    regexYFlag: false
+    unicodeCodePointEscapes: false
 
 plugins:
     - smells
@@ -597,7 +606,58 @@ rules:
 
 
     # ES6
-    # TODO
+
+    # 箭头函数的参数，仅在有必要时才加上括号
+    arrow-parens: [1, as-needed]
+
+    # => 前后都应有空格
+    arrow-spacing: [1, { before: true, after: true }]
+
+    # 派生类的构造器函数必须有 super() 调用，其他情况下构造器函数都不允许调用 super()
+    constructor-super: 2
+
+    # 派生类必须先调用过 super() 才能引用 this
+    no-this-before-super: 2
+
+    # 生成器函数的星号前需要有空格，星号后不能有空格，例如 function *foo() {}
+    generator-star-spacing: [1, { before: true, after: false }]
+
+    # 不要写出不带 yield 语句的生成器函数
+    require-yield: 1
+
+    # 不要出现以下例子里的情况：
+    # class A {}
+    # A = 0;
+    no-class-assign: 2
+
+    # 不能对常量进行赋值
+    no-const-assign: 2
+
+    # 是否使用 object shorthand 应该由开发者视可读性而定，不一刀切
+    object-shorthand: 0
+
+    # 如果需要使用的方法可以用 Reflect 的接口完成，则优先使用 Reflect
+    # 不过由于 Reflect 不可被 polyfill 而且也没有完整实现，暂不开启
+    prefer-reflect: 0
+
+
+
+    # ES6 项目请开启以下几个规则（将 0 改为 1）
+
+    # 仅使用 let 和 const，不使用 var
+    no-var: 0
+
+    # 对于不会被修改的变量，优先考虑使用 const 而非 let
+    prefer-const: 0
+
+    # 如果仅仅是为了使用数组作为函数参数，那么应该优先考虑使用 spread operator 而不是 .apply()
+    prefer-spread: 0
+
+    # 不要写 var self = this; 尽量使用 bind 和 箭头函数
+    smells/no-this-assign: 0
+
+    # 禁止复杂的字符串拼接，用模板引擎或 ES6 template string 替代
+    smells/no-complex-string-concat: 0
 
 
 
@@ -612,18 +672,10 @@ rules:
     # 禁止 setInterval（对时间要求精确的动画除外）（为了防止 timer 未清除之类的乱七八糟的错误）
     smells/no-setinterval: 1
 
-    # 都用 ES6 了还写什么 var self = this; 何况 bind 也挺好用的（需要支持 IE8- 且没有 polyfill 时例外）
-    # 非 ES6 项目请注释掉这个规则
-    smells/no-this-assign: 1
-
-    # 禁止复杂的字符串拼接，用模板引擎或 ES6 template string 替代
-    # 非 ES6 项目请注释掉这个规则
-    smells/no-complex-string-concat: 1
 
     # 禁止连续反复操作同一个变量，用 forEach、reduce、_.flow 都可以解决
     # 尚未支持
     # smells/no-reassign: 1
-
 
 
     # React 相关
