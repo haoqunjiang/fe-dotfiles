@@ -33,6 +33,8 @@ env:
     node: true
     es6: true
     jquery: true
+    commonjs: true
+    amd: true
 
 # 非 ES6 项目请全部关闭（直接删除即可，以下所有特性默认都是为 false）
 ecmaFeatures:
