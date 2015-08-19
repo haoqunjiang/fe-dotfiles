@@ -505,8 +505,8 @@ rules:
     # computed property 的方括号中是否需要带空格无所谓，属性名太复杂时加空格保证可读性，简单的话就不加了
     computed-property-spacing: 0
 
-    # 定义对象属性时，冒号前不应有空格，冒号后必须有空格；在需要对齐的场合，padding 空格加在冒号右侧
-    key-spacing: [1, { beforeColon: false, afterColon: true, align: 'value'}]
+    # 定义对象属性时，冒号前不应有空格，冒号后必须有空格；在需要对齐的场合，padding 空格加在冒号右侧，但不强制要求对齐
+    key-spacing: [1, { beforeColon: false, afterColon: true }]
 
     # 用于注释的 // 和 /* 后面应当有个空格
     spaced-comment: [1, always]
