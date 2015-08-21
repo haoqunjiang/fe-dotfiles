@@ -255,8 +255,9 @@ rules:
     no-implicit-coercion: [1, { boolean: false, number: true, string: true }]
 
     # 上下文中不存在 this 的时候不能引用 this （注意：只有函数名以大写字母开头的才会被认为是 constructor 函数）
+    # 因为 jQuery 的事件回调中存在大量的 this 引用，所以这里还是只设置成警告，免得因为忘了加 eslint-disable-line 而出错
     # 详细文档 http://eslint.org/docs/rules/no-invalid-this
-    no-invalid-this: 2
+    no-invalid-this: 1
 
     # 在 ES5 前，一个 block 不会产生新的 scope，所以，纯粹的花括号是没有意义的
     # 如果用了 ES6，则请开启 blockBindings: true，此时这个规则失去作用
@@ -644,6 +645,9 @@ rules:
     # 不能对常量进行赋值
     no-const-assign: 2
 
+    # 禁止 class 定义中出现两个同名成员
+    no-dupe-class-members: 2
+
     # 是否使用 object shorthand 应该由开发者视可读性而定，不一刀切
     object-shorthand: 0
 
@@ -737,8 +741,14 @@ rules:
     # 如果仅仅是为了使用数组作为函数参数，那么应该优先考虑使用 spread operator 而不是 .apply()
     prefer-spread: 0
 
+    # 回调函数尽可能使用箭头函数
+    prefer-arrow-callback: 0
+
+    # 禁止复杂的字符串拼接，用模板引擎或 ES6 template string 替代
+    prefer-template: 0
+
     # 不要写 var self = this; 尽量使用 bind 和 箭头函数
     smells/no-this-assign: 0
 
-    # 禁止复杂的字符串拼接，用模板引擎或 ES6 template string 替代
+    # 这个与 prefer-template 重复了
     smells/no-complex-string-concat: 0
