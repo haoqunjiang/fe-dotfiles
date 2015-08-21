@@ -1,6 +1,6 @@
 # 本配置文件使用 YAML 格式编写
 # 文件放在 ~ 目录下，省去了为每个项目复制一遍配置的琐碎操作
-# 规则列表目前更新到 eslint v1.1.0
+# 规则列表目前更新到 eslint v1.2.1
 # 规则列表请参考：
 # http://eslint.org/docs/rules/
 # https://github.com/elijahmanor/eslint-plugin-smells
