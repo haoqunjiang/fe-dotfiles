@@ -23,6 +23,6 @@
 根据笔者的考察，目前 CSS Lint 工具中规则最丰富的应当是 stylelint，不过它的 CLI 功能尚在开发中，所以决定暂时等待。
 在此期间可以先用 CSSLint。
 
-## 关于 HTML Lint 工具
+### 关于 HTML Lint 工具
 
 目前看来 htmllint 和 htmlcs 项目的规则丰富程度较为接近，留待进一步考察后确定用哪个。
