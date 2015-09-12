@@ -73,6 +73,13 @@ globals:
     React: true
 
 rules:
+    # 这个规则直接禁止某几种 AST 节点类型的出现
+    # 此处禁止了 debugger 语句和 with 语句
+    # AST 节点类型见此 https://github.com/eslint/espree/blob/master/lib/ast-node-types.js
+    # 在线的 AST 解析器见此 http://eslint.org/parser/
+    no-restricted-syntax: [2, "DebuggerStatement", "WithStatement"]
+
+
     # Possible Errors & Best Practices
 
     # 禁止 trailing comma，因为在 IE8- 会报错
@@ -174,6 +181,9 @@ rules:
     # 不过 Number.isNaN 是 ES6 标准，IE 以及 Safari 8- 不支持，而 isNaN 又有类型转换
     # 所以在没有 polyfill 的情况下还是判断 x !== x 吧……
     no-self-compare: 1
+
+    # 不强制要求每个函数都带上 JSDoc 风格的注释
+    require-jsdoc: 0
 
     # 保证 JSDoc 注释符合其语法
     valid-jsdoc: 1
@@ -321,6 +331,11 @@ rules:
     # 允许使用短路求值（a && b() 这种）
     no-unused-expressions: [1, { allowShortCircuit: true }]
 
+    # 单行的字符串字面量拼接是没必要的，完全可以写成一个字符串
+    # 比如 var a = '1' + '0' 应当写成 var a = '10'
+    # 多行的字符串拼接不警告
+    no-useless-concat: 1
+
     # 去掉不必要的 .call 和 .apply，因为它们的效率会比直接调用函数差一点点
     no-useless-call: 1
 
@@ -429,6 +444,10 @@ rules:
     # 不建议使用同步函数
     no-sync: 1
 
+    # 出于性能和可读性考虑，只能在最外层使用 require
+    # 个人感觉不是很有必要
+    global-require: 0
+
 
 
     # Stylistic Issues
@@ -486,6 +505,10 @@ rules:
     # 比如 if (cond) 不能写成 if(cond)
     space-after-keywords: [1, always]
 
+    # else, while 之类的关键词前面必须有空格
+    # 比如 if (a) { b() } else { c(); }
+    space-before-keywords: [1, always]
+
     # 对上一个规则的补充，针对 return / throw / case
     space-return-throw-case: 1
 
@@ -495,6 +518,10 @@ rules:
 
     # 代码块的花括号 { 前面应当有个空格
     space-before-blocks: [1, always]
+
+    # single line blocks 的 { 之后以及 } 之前应当有空格
+    # 比如 function foo() { return 0; }
+    block-spacing: [1, always]
 
     # 花括号 { 一律在行末，除非表达式只有一行
     brace-style: [1, 1tbs, { allowSingleLine: true }]
