@@ -255,9 +255,9 @@ rules:
     no-implicit-coercion: [1, { boolean: false, number: true, string: true }]
 
     # 上下文中不存在 this 的时候不能引用 this （注意：只有函数名以大写字母开头的才会被认为是 constructor 函数）
-    # 因为 jQuery 的事件回调中存在大量的 this 引用，所以这里还是只设置成警告，免得因为忘了加 eslint-disable-line 而出错
+    # 因为 jQuery 的事件回调中存在大量的 this 引用，所以这里暂时选择关闭，非 jQuery 项目请打开
     # 详细文档 http://eslint.org/docs/rules/no-invalid-this
-    no-invalid-this: 1
+    no-invalid-this: 0
 
     # 在 ES5 前，一个 block 不会产生新的 scope，所以，纯粹的花括号是没有意义的
     # 如果用了 ES6，则请开启 blockBindings: true，此时这个规则失去作用
@@ -448,10 +448,12 @@ rules:
     dot-location: [1, property]
 
     # 如果在操作符（比如 +）处换行，操作符应当在下一行行首
-    operator-linebreak: [1, before]
+    # 对于一长串字符串的拼接，感觉在行末更舒服
+    operator-linebreak: 0 #[1, before]
 
     # 在变量定义后应当跟着一行空行
-    newline-after-var: [1, always]
+    # 目前尚有 bug 所以暂时关闭这个检查
+    newline-after-var: 0 # [1, always]
 
     # 一律使用单引号，除非字符串的值中有单引号
     quotes: [1, single, avoid-escape]
@@ -603,8 +605,8 @@ rules:
     # 至多嵌套五层代码块
     max-depth: [2, 5]
 
-    # 每行最多 110 个字符，比 80 个字符多一点，毕竟可能会有很多缩进，而且反正显示器够大
-    max-len: [1, 110]
+    # 每行最多 140 个字符，比 80 个字符多一点，毕竟可能会有很多缩进，而且反正显示器够大
+    max-len: [1, 140]
 
     # 上限设置到 10 是因为 Angular 依赖注入可能会有很多
     max-params: [1, 10]
@@ -666,7 +668,8 @@ rules:
     smells/no-complex-switch-case: 1
 
     # 禁止 setInterval（对时间要求精确的动画除外）（为了防止 timer 未清除之类的乱七八糟的错误）
-    smells/no-setinterval: 1
+    # 感觉这个规则不大靠谱，出发点是好的但是不应该这样实现
+    # smells/no-setinterval: 1
 
 
     # 禁止连续反复操作同一个变量，用 forEach、reduce、_.flow 都可以解决
