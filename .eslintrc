@@ -318,7 +318,8 @@ rules:
     no-throw-literal: 2
 
     # 尽量不要出现没有用到的表达式
-    no-unused-expressions: 1
+    # 允许使用短路求值（a && b() 这种）
+    no-unused-expressions: [1, { allowShortCircuit: true }]
 
     # 去掉不必要的 .call 和 .apply，因为它们的效率会比直接调用函数差一点点
     no-useless-call: 1
