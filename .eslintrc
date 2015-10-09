@@ -109,6 +109,9 @@ rules:
     # 条件语句中没必要特地用双重否定 !! 将表达式转换为 boolean 类型
     no-extra-boolean-cast: 1
 
+    # if else 语句中，if 的条件应当是肯定形式的，这样更加易读
+    no-negated-condition: 1
+
     # 提醒开发者不要把 !(a in b) 写成 !a in b
     no-negated-in-lhs: 2
 
@@ -376,8 +379,8 @@ rules:
 
     # Variables
 
-    # 禁止使用未经声明的变量
-    no-undef: 2
+    # 禁止使用未经声明的变量，在 typeof 表达式中除外
+    no-undef: [2, { typeof: false }
 
     # 只能把 var 定义的变量当做块级变量来用，避免因为 variable hoisting 带来的难以察觉的 bug，同时方便将来迁移到 ES6 的 let/const
     block-scoped-var: 1
@@ -425,7 +428,10 @@ rules:
     handle-callback-err: 2
 
     # 这个解释起来有点麻烦，一般也用不到，可以参见官方文档 http://eslint.org/docs/rules/no-mixed-requires
-    no-mixed-requires: 1
+    # 主要有两点：
+    # 1. node 中 require 语句和一般的 var 语句要分开
+    # 2. 不同类型的 require (core module / file module...) 也需要分开
+    no-mixed-requires: [1, { grouping: true }]
 
     # var foo = new require('foo'); 是把 require 当成构造器函数了，与 var foo = new (require('foo')); 不等价，容易误用
     # 更好的做法是 var Foo = require('foo'); var foo = new Foo();
@@ -544,7 +550,8 @@ rules:
     # 用于注释的 // 和 /* 后面应当有个空格
     spaced-comment: [1, always]
 
-    # 在多行注释开始前要有一个空行（在代码块开头的时候除外）
+    # 在多行注释开始前要有一个空行（在代码块、变量定义开头的时候除外）
+    # TOFIX: 等待这个 issue 被解决中
     lines-around-comment: [1, { beforeBlockComment: true, allowBlockStart: true }]
 
     # 代码块首尾不应有空行
@@ -634,7 +641,8 @@ rules:
     max-depth: [2, 5]
 
     # 每行最多 140 个字符，比 80 个字符多一点，毕竟可能会有很多缩进，而且反正显示器够大
-    max-len: [1, 140]
+    # 因为目前开发使用 AMD 模块，define 的时候依赖注入的参数列表可能有点长……于是暂时放弃这个校验
+    max-len: 0  #[1, 140]
 
     # 上限设置到 10 是因为 Angular 依赖注入可能会有很多
     max-params: [1, 10]
