@@ -727,9 +727,6 @@ rules:
     # Disallow undeclared variables in JSX
     react/jsx-no-undef: 1
 
-    # 在 JSX 中一律使用单引号
-    react/jsx-quotes: [1, single, avoid-escape]
-
     # Enforce propTypes declarations alphabetical sorting
     react/jsx-sort-prop-types: 1
 
