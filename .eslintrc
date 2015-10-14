@@ -380,7 +380,7 @@ rules:
     # Variables
 
     # 禁止使用未经声明的变量，在 typeof 表达式中除外
-    no-undef: [2, { typeof: false }
+    no-undef: [2, { typeof: false }]
 
     # 只能把 var 定义的变量当做块级变量来用，避免因为 variable hoisting 带来的难以察觉的 bug，同时方便将来迁移到 ES6 的 let/const
     block-scoped-var: 1
