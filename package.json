@@ -1,0 +1,19 @@
+{
+  "name": "fe-dotfiles",
+  "version": "0.0.1",
+  "description": "Dotfiles for front-end and node.js projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sodatea/fe-dotfiles.git"
+  },
+  "author": "sodatea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sodatea/fe-dotfiles/issues"
+  },
+  "homepage": "https://github.com/sodatea/fe-dotfiles#readme"
+}

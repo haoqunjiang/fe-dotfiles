@@ -1,6 +1,6 @@
 # 本配置文件使用 YAML 格式编写
 # 文件放在 ~ 目录下，省去了为每个项目复制一遍配置的琐碎操作
-# 规则列表目前更新到 eslint v1.2.1
+# 规则列表目前更新到 eslint v1.6.0
 # 规则列表请参考：
 # http://eslint.org/docs/rules/
 # https://github.com/elijahmanor/eslint-plugin-smells
@@ -188,8 +188,8 @@ rules:
     # 不强制要求每个函数都带上 JSDoc 风格的注释
     require-jsdoc: 0
 
-    # 保证 JSDoc 注释符合其语法
-    valid-jsdoc: 1
+    # 保证 JSDoc 注释符合其语法（因为 JSDoc 对 ES2015 支持不好，暂时放弃）
+    valid-jsdoc: 0
 
     # 跟 typeof 的结果对比的字符串必须是 number、string 等 typeof 表达式可能的取值，不然的话很有可能是出现了 typo
     valid-typeof: 2
@@ -634,8 +634,8 @@ rules:
 
     # Complexity
 
-    # 单个函数最多有 16 行（内部的其他函数定义不算）
-    max-statements: [2, 16]
+    # 单个函数最多有 30 行（内部的其他函数定义不算）
+    max-statements: [2, 30]
 
     # 至多嵌套五层代码块
     max-depth: [2, 5]
@@ -657,8 +657,8 @@ rules:
 
     # ES6
 
-    # 箭头函数的参数，仅在有必要时才加上括号
-    arrow-parens: [1, as-needed]
+    # 箭头函数的参数，即使只有一个也要带上括号
+    arrow-parens: [1, always]
 
     # => 前后都应有空格
     arrow-spacing: [1, { before: true, after: true }]
@@ -780,7 +780,7 @@ rules:
     # 如果仅仅是为了使用数组作为函数参数，那么应该优先考虑使用 spread operator 而不是 .apply()
     prefer-spread: 0
 
-    # 回调函数尽可能使用箭头函数
+    # 回调函数尽可能使用箭头函数，而不是 Inline 的匿名函数
     prefer-arrow-callback: 0
 
     # 禁止复杂的字符串拼接，用模板引擎或 ES6 template string 替代
