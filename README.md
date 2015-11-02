@@ -14,7 +14,4 @@ Lint tools:
 - [ ] [htmllint](http://htmllint.github.io/)
 - [ ] [htmlcs](https://github.com/ecomfe/htmlcs)
 
-Note: the `.gitignore` file is a part of this project as well, thus applicable to any other frontend projects.
-
-
-TODO: Internationalization.
+Note: the `.gitignore` file is a part of this project as well, thus applicable to any other front end projects.
