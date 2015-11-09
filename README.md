@@ -15,3 +15,5 @@ Lint tools:
 - [ ] [htmlcs](https://github.com/ecomfe/htmlcs)
 
 Note: the `.gitignore` file is a part of this project as well, thus applicable to any other front end projects.
+
+Git may have bugs with `core.autocrlf=true` for CJK text files, see [https://github.com/cssmagic/blog/issues/22](https://github.com/cssmagic/blog/issues/22). Need reproducing.
