@@ -1,6 +1,6 @@
 # Coding Style Matters
 
-This repository contains a bunch of dotfiles, most of which are related to coding styles, for front-end and node.js projects.
+An opinionated coding style guide/configuration set for front-end projects.
 
 ## Lint tools
 
@@ -13,14 +13,13 @@ This repository contains a bunch of dotfiles, most of which are related to codin
 - [x] [CSScomb](http://csscomb.com/)
 - [ ] [htmllint](http://htmllint.github.io/)
 - [ ] [htmlcs](https://github.com/ecomfe/htmlcs)
-- [ ] [mdast-lint](https://github.com/wooorm/mdast-lint)
+- [x] [remark-lint](https://github.com/wooorm/remark-lint)
 - [ ] [markdownlint](https://github.com/DavidAnson/markdownlint)
 
 ### Notes on configuration files
 
 - [TSLint might support dot-prefixed configuration file in the future](https://github.com/palantir/tslint/issues/315#issuecomment-74350035)
 - [TSLint might support rulesDirectory property, which means that we will be able to utilize custom rules such as `tslint-eslint-rules` and `tslint-microsoft-contrib`, etc.](https://github.com/palantir/tslint/pull/800)
-- [markdownlint is considering using key for rules instead of number](https://github.com/DavidAnson/markdownlint/issues/1)
 
 ## Other tools that do not need a configuration file
 
